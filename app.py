@@ -36,7 +36,11 @@ with open("classes.json") as f:
 
 model = models.resnet18(weights=None)
 model.fc = nn.Linear(model.fc.in_features, len(classes))
-model.load_state_dict(torch.load('vita_shade_model.pth', map_location=torch.device('cpu')))
+model.load_state_dict(
+    torch.load(
+        'vita_shade_model.pth',
+        map_location=torch.device('cpu'),
+        weights_only=False))
 model = model.to('cpu')
 model.eval()
 
