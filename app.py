@@ -36,8 +36,8 @@ with open("classes.json") as f:
 
 model = models.resnet18(weights=None)
 model.fc = nn.Linear(model.fc.in_features, len(classes))
-model.load_state_dict(torch.load("vita_shade_model.pth", map_location=device))
-model = model.to(device)
+model.load_state_dict(torch.load('vita_shade_model.pth', map_location=torch.device('cpu')))
+model = model.to('cpu')
 model.eval()
 
 transform = transforms.Compose([
